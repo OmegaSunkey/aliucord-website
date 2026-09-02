@@ -1,0 +1,64 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+{{if .IsHome}}
+    <meta name="description" content='Aliucord is a client modification for the Legacy Discord for Android app.'>
+{{else}}
+    {{ with .Params.description }}
+    <meta name="description" content="{{ . }}">
+    {{ end }}
+{{ end }}
+
+<link rel="icon" href="/images/aliucord.svg">
+{{ $inter := resources.Get "fonts/InterVariable.woff2" }}
+{{ with $inter}}
+    <link rel="preload" href="{{ .Permalink }}" as="font" type="font/ttf" crossorigin="anonymous">
+    <style>
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-display: swap;
+            src: url('{{ .Permalink }}');
+        }
+    </style>
+{{ end }}
+
+<!-- Self-hosted Material Symbols Font -->
+{{ $font := resources.Get "fonts/MaterialSymbolsOutlined-optimized.woff2" }}
+{{ with $font }}
+    <link rel="preload" href="{{ .Permalink }}" as="font" type="font/woff2" crossorigin="anonymous">
+    <style>
+        @font-face {
+            font-family: 'Material Symbols Outlined';
+            font-style: normal;
+            font-weight: 100 700;
+            font-display: block;
+            src: url('{{ .Permalink }}') format('woff2');
+        }
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-smoothing: antialiased;
+            vertical-align: middle;
+        }
+    </style>
+{{ end }}
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+{{ partialCached "head/css.html" . }}
+{{ partialCached "head/js.html" . }}
+<!-- USE custom_css parameter on front matter to load specific css :D -->
+{{ with .Params.custom_css }}
+    {{ $customCSS := resources.Get . }}
+    {{ with $customCSS }}
+        <link rel="stylesheet" href="{{ .Permalink }}" integrity="{{ .Data.Integrity }}">
+    {{ end }}
+{{ end }}

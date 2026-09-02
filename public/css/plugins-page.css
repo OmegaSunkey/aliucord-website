@@ -1,0 +1,56 @@
+/* =====================================
+ * PLUGINS PAGE SPECIFIC STYLE
+ * ===================================== */
+
+/* body.plugins ul.post-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+body.plugins ul.post-list > li {
+    width: 400px;
+    margin: auto;
+    overflow-wrap: break-word;
+}
+
+body.plugins #plugin-list {
+    margin: auto;
+    width: 100%;
+    overflow: clip;
+}
+
+body.plugins article {
+    margin: initial;
+    height: 260px;
+}
+
+body.plugins main {
+    max-width: initial;
+}
+*/
+
+body.plugins main {
+    max-width: initial;
+    width: 80%
+}
+
+body.plugins article {
+    overflow-wrap: break-word;
+}
+
+@media (min-width: 1024px) {
+    body.plugins .md-masonry {
+        column-count: 3;
+    }
+}
+
+body.plugins #plugin-search::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    position: absolute;
+}
+
+body.plugins .md-search-field {
+    max-width: 30em;
+    margin: auto;
+    margin-bottom: 16px;
+}

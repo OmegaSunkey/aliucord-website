@@ -1,0 +1,96 @@
+{{ define "main" }}
+
+    <section class=home-page>
+        <div class="home-side-page">
+            <h2>{{ .Site.Title }}</h2>
+            <img src="images/aliucord.svg" width=100 alt="The Aliucord Icon.">
+            <p>A mod for the legacy Discord Android App</p>
+            <div class="main-page-buttons">
+                <a class="md-btn md-btn-filled" href='https://github.com/Aliucord/AliucordManager/releases/latest'>
+                    <span class="material-symbols-outlined">download</span>
+                    Download Manager
+                </a>
+                <a class="md-btn md-btn-tonal" href='/docs'>
+                    <span class="material-symbols-outlined">developer_guide</span>
+                    Guide
+                </a>
+                <a class="md-btn md-btn-tonal" href="https://discord.gg/EsNDvBaHVU">
+                    <span class="material-symbols-outlined">help</span>
+                    Support Server
+                </a>
+            </div>
+        </div>
+        <div class="md-masonry features-side-page">
+            <article class="md-card md-card-filled">
+                <div class=md-card__content>
+                    <h1><span class="material-symbols-outlined span-h1">update</span>Refreshed</h1>
+                    <p>We maintain the legacy Discord app and backport new Discord features either in Core or as a separate plugin.<p>
+                </div>
+                <div class="md-card__actions">
+                    <a class="md-btn md-btn-filled" style="color: var(--md-sys-color-on-primary); text-decoration: none;" href="/docs/backports">
+                        <span class="material-symbols-outlined">visibility</span>
+                        See backports
+                    </a>
+                </div>
+            </article>
+            <article class="md-card md-card-filled">
+                <div class=md-card__content>
+                    <h1><span class="material-symbols-outlined span-h1">extension</span>Lots of plugins</h1>
+                    <p>With 349 plugins, we have a great variety of features, from fun plugins to utility ones.<p>
+                </div>
+            </article>
+            <article class="md-card md-card-filled">
+                <div class=md-card__content>
+                    <h1><span class="material-symbols-outlined span-h1">palette</span>Colorful</h1>
+                    <p>With 149+ themes, custom backgrounds, and transparency support, you can add your touch to your client.<p>
+                </div>
+                <div class="md-card__actions">
+                    <button class="md-btn md-btn-filled" data-open-lightbox="gallery-1"><span class="material-symbols-outlined">preview</span>Preview themes</button>
+                </div>
+            </article>
+            <article class="md-card md-card-filled">
+                <div class=md-card__content>
+                    <h1><span class="material-symbols-outlined span-h1">code</span>Open source</h1>
+                    <p>Everything is available on GitHub.<p>
+                </div>
+            </article>
+        </div>
+        <div class="md-lightbox" data-lightbox="gallery-1">
+            <div class="md-lightbox__backdrop"></div>
+            <div class="md-lightbox__content">
+                <button class="md-lightbox__close" aria-label="Close">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+
+                <div class="md-carousel">
+                    <div class="md-carousel__viewport">
+                        <div class="md-carousel__track">
+                            <div class="md-carousel__slide">
+                                <img src="/images/evergarden.webp" alt="Evergarden theme for Aliucord. A greenish theme available in light and dark mode." loading="lazy">
+                            </div>
+                            <div class="md-carousel__slide">
+                                <img src="/images/catppuccin.webp" alt="Catppuccin theme for Aliucord. A purple theme, with light and 4 dark flavors." loading="lazy">
+                            </div>
+                            <div class="md-carousel__slide">
+                                <img src="/images/gruvbox.webp" alt="Gruvbox theme for Aliucord. A brownish and greenish theme." loading="lazy">
+                            </div>
+                            <div class="md-carousel__slide">
+                                <img src="/images/filter-hexagon.webp" alt="Filter Hexagon theme for Aliucord. A dark, pastel blurple mixed with pastel greenish accent." loading="lazy">
+                            </div>
+                            <div class="md-carousel__slide">
+                                <img src="/images/materii.webp" alt="Materii theme for Aliucord. A theme that uses Material Design 3 colors." loading="lazy">
+                            </div>
+                            <div class="md-carousel__slide">
+                                <img src="/images/p-chy.webp" alt="P-Chy (pronounced Peachy) theme for Aliucord. A dark orange theme." loading="lazy">
+                            </div>
+                            <div class="md-carousel__slide">
+                                <img src="/images/aliucord.webp" alt="Aliucord theme. A dark green theme." loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{{ end }}

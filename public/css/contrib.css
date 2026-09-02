@@ -1,0 +1,198 @@
+body.contrib main {
+    overflow-x: hidden;
+}
+
+.contrib-cloud {
+    position: relative;
+    width: 500px;
+    height: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+/* Rotating container (holds all images) */
+.cloud-rotator {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.cloud-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    margin: -48px 0 0 -48px;
+}
+
+.cloud-child.orbit1 {
+    animation: orbit 20s linear infinite;
+}
+
+.cloud-child.orbit2 {
+    animation: orbit2 25s linear infinite;
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+}
+
+.cloud-child.orbit3 {
+    animation: orbit3 30s linear infinite;
+    width: 48px;
+    height: 48px;
+    margin: -24px 0 0 -24px;
+}
+
+.cloud-child.orbit4 {
+    animation: orbit4 30s linear infinite;
+    width: 32px;
+    height: 32px;
+    margin: -16px 0 0 -16px;
+}
+
+.o1:hover .cloud-child.orbit1,
+.o2:hover .cloud-child.orbit2,
+.o3:hover .cloud-child.orbit3,
+.o4:hover .cloud-child.orbit4 {
+    animation-play-state: paused;
+}
+
+.cloud-child img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+
+    /* Counter-rotation to keep images upright */
+    animation: counter-orbit 20s linear infinite;
+}
+
+/* Orbit animation: rotates around the center */
+@keyframes orbit {
+    from {
+        transform: rotate(calc(var(--i) * (360deg / var(--total)))) translateX(120px);
+    }
+    to {
+        transform: rotate(calc(var(--i) * (360deg / var(--total)) + 360deg)) translateX(120px);
+    }
+}
+
+@keyframes orbit2 {
+    from {
+        transform: rotate(calc(var(--i) * (360deg / var(--total)))) translateX(240px);
+    }
+    to {
+        transform: rotate(calc(var(--i) * (360deg / var(--total)) + 360deg)) translateX(240px);
+    }
+}
+
+@keyframes orbit3 {
+    from {
+        transform: rotate(calc(var(--i) * (360deg / var(--total)))) translateX(340px);
+    }
+    to {
+        transform: rotate(calc(var(--i) * (360deg / var(--total)) + 360deg)) translateX(340px);
+    }
+}
+
+@keyframes orbit4 {
+    from {
+        transform: rotate(calc(var(--i) * (360deg / var(--total)))) translateX(440px);
+    }
+    to {
+        transform: rotate(calc(var(--i) * (360deg / var(--total)) + 360deg)) translateX(440px);
+    }
+}
+
+/* Counter-rotation: keeps images upright as they orbit */
+@keyframes counter-orbit {
+    from {
+        transform: rotate(calc(var(--i) * -(360deg / var(--total))));
+    }
+    to {
+        transform: rotate(calc(var(--i) * -(360deg / var(--total)) - 360deg));
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    body.contrib main {
+        padding: 0;
+    }
+    body.contrib h1 {
+        padding: 16px;
+    }
+    .contrib-cloud {
+        width: 350px;
+        height: 450px;
+    }
+
+    .cloud-rotator {
+        width: 32px;
+        height: 32px;
+    }
+
+    .cloud-child {
+        width: 40px;
+        height: 40px;
+        margin: -20px 0 0 -20px;
+    }
+
+    .cloud-child.orbit2 {
+        width: 32px;
+        height: 32px;
+        margin: -16px 0 0 -16px;
+    }
+
+    .cloud-child.orbit3 {
+        width: 24px;
+        height: 24px;
+        margin: -12px 0 0 -12px;
+    }
+
+    .cloud-child.orbit4 {
+        width: 16px;
+        height: 16px;
+        margin: -8px 0 0 -8px;
+    }
+
+    @keyframes orbit {
+        from {
+            transform: rotate(calc(var(--i) * (360deg / var(--total)))) translateX(60px);
+        }
+        to {
+            transform: rotate(calc(var(--i) * (360deg / var(--total)) + 360deg)) translateX(60px);
+        }
+    }
+    @keyframes orbit2 {
+        from {
+            transform: rotate(calc(var(--i) * (360deg / var(--total)))) translateX(110px);
+        }
+        to {
+            transform: rotate(calc(var(--i) * (360deg / var(--total)) + 360deg)) translateX(110px);
+        }
+    }
+    @keyframes orbit3 {
+        from {
+            transform: rotate(calc(var(--i) * (360deg / var(--total)))) translateX(150px);
+        }
+        to {
+            transform: rotate(calc(var(--i) * (360deg / var(--total)) + 360deg)) translateX(150px);
+        }
+    }
+    @keyframes orbit4 {
+        from {
+            transform: rotate(calc(var(--i) * (360deg / var(--total)))) translateX(190px);
+        }
+        to {
+            transform: rotate(calc(var(--i) * (360deg / var(--total)) + 360deg)) translateX(190px);
+        }
+    }
+}
