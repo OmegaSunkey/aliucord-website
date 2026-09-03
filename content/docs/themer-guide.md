@@ -2,10 +2,10 @@
 date = '2026-08-30T16:20:43-05:00'
 draft = false
 title = 'Themer guide'
-weight = 11
+weight = 12
 +++
 
-**Note:** Reading the [Documentation](https://github.com/Aliucord/documentation/blob/main/theme-dev) and using the [Theme maker site](https://aliucord.com/theme-maker) can help you make your own theme.
+**Note:** Reading the [Documentation](https://github.com/Aliucord/documentation/blob/main/theme-dev/README.md) and using the [Theme maker site](https://backend.aliucord.com/theme-maker) can help you make your own theme.
 
 **If the theme you are using doesn't work for you, either you are not using the right transparency mode, you are not using theme mirror from `#theme-support` pins (this only affects image background), or Themer is broken on your end (can happen depending on Android version/OS)**
 

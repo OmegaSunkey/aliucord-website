@@ -1,6 +1,7 @@
 locale = 'en-us'
 theme = 'Material'
 title = 'Aliucord'
+enableRobotsTXT = true
 
 [security]
     allowContent = ['^text/html$', '^text/markdown$']

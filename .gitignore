@@ -1,2 +1,3 @@
 public/
 *.kate-swp
+.hugo_build.lock

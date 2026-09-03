@@ -2,7 +2,7 @@
 date = '2026-08-30T16:19:54-05:00'
 draft = false
 title = 'Adding sounds guide'
-weight = 10
+weight = 11
 +++
 
 **How to use StartupSound & NoticeSound plugins**
