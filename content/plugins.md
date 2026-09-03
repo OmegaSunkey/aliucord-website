@@ -56,7 +56,7 @@ params:
         }
     });
     document.querySelector("#plugin-search").addEventListener("input", function (e) {
-        let plugins = document.querySelectorAll("article");
+        let plugins = document.querySelectorAll("#plugin-list > article");
         for(i=0;i<plugins.length;i++) {
             plugins[i].style.display = "none";
             if(e.target.value.length == 0) plugins[i].style.display = "block";
