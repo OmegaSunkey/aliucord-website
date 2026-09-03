@@ -3,6 +3,7 @@ date = '2026-08-30T16:16:23-05:00'
 draft = false
 title = 'Forks'
 weight = 3
+custom_css = 'css/table.css'
 +++
 
 

@@ -1,3 +1,132 @@
+
+/* =========================================
+ *  MATERIAL DESIGN 3: TOOLTIPS
+ *  ========================================= */
+
+/* Tooltip container (positioned absolutely) */
+.md-tooltip {
+    position: absolute;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+}
+
+.md-tooltip.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Tooltip content box */
+.md-tooltip__content {
+    /* MD3 Inverse Surface (dark background for light text) */
+    background-color: var(--md-sys-color-inverse-surface, #313033);
+    color: var(--md-sys-color-inverse-on-surface, #F4EFF4);
+
+    /* MD3 Corner Extra Small (4px) */
+    border-radius: var(--md-sys-shape-corner-extra-small);
+
+    /* MD3 Elevation 2 */
+    box-shadow: var(--md-sys-elevation-2);
+
+    /* Padding */
+    padding: 6px 12px;
+
+    /* Typography (Label Medium) */
+    font-family: var(--md-sys-typescale-font-family);
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+
+    /* Prevent text wrapping */
+    white-space: nowrap;
+    max-width: 300px;
+}
+
+/* Rich tooltip (with more content) */
+.md-tooltip__content--rich {
+    white-space: normal;
+    padding: 12px 16px;
+    max-width: 280px;
+}
+
+/* Rich tooltip with icon */
+.md-tooltip__content--rich .md-tooltip__icon {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.md-tooltip__content--rich .md-tooltip__icon .material-symbols-outlined {
+    font-size: 20px;
+    color: var(--md-sys-color-inverse-primary, #D0BCFF);
+}
+
+/* Rich tooltip title */
+.md-tooltip__content--rich .md-tooltip__title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    margin-bottom: 4px;
+}
+
+/* Rich tooltip body */
+.md-tooltip__content--rich .md-tooltip__body {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    opacity: 0.9;
+}
+
+/* Arrow (optional, points to the target) */
+.md-tooltip__arrow {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: var(--md-sys-color-inverse-surface, #313033);
+    transform: rotate(45deg);
+}
+
+/* Arrow positions */
+.md-tooltip[data-placement="top"] .md-tooltip__arrow {
+    bottom: -4px;
+    left: 50%;
+    margin-left: -4px;
+}
+
+.md-tooltip[data-placement="bottom"] .md-tooltip__arrow {
+    top: -4px;
+    left: 50%;
+    margin-left: -4px;
+}
+
+.md-tooltip[data-placement="left"] .md-tooltip__arrow {
+    right: -4px;
+    top: 50%;
+    margin-top: -4px;
+}
+
+.md-tooltip[data-placement="right"] .md-tooltip__arrow {
+    left: -4px;
+    top: 50%;
+    margin-top: -4px;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    .md-tooltip__content {
+        background-color: var(--md-sys-color-inverse-surface, #E6E0E9);
+        color: var(--md-sys-color-inverse-on-surface, #313033);
+    }
+
+    .md-tooltip__arrow {
+        background-color: var(--md-sys-color-inverse-surface, #E6E0E9);
+    }
+}
+
 body.contrib main {
     overflow-x: hidden;
 }

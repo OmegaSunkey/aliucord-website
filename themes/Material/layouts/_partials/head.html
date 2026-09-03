@@ -3,6 +3,21 @@
 
 {{if .IsHome}}
     <meta name="description" content='Aliucord is a client modification for the Legacy Discord for Android app.'>
+    {{ with resources.Get "css/home.css" }}
+      {{ $opts := dict
+        "minify" (cond hugo.IsDevelopment false true)
+        "sourceMap" (cond hugo.IsDevelopment "linked" "none")
+      }}
+      {{ with . | css.Build $opts }}
+        {{- if hugo.IsDevelopment }}
+          <link rel="stylesheet" href="{{ .RelPermalink }}">
+        {{- else }}
+          {{- with . | fingerprint }}
+            <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+          {{- end }}
+        {{- end }}
+      {{ end }}
+    {{ end }}
 {{else}}
     {{ with .Params.description }}
     <meta name="description" content="{{ . }}">
