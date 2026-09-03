@@ -23,7 +23,6 @@ params:
     document.querySelector("main > article").className = "";
     fetch("https://plugins.aliucord.com/manifest.json").then(r => r.json()).then(json => {
         for(i=0;i<json.length;i++) {
-            //let plugin = document.createElement("li");
             let article = document.createElement("article");
             let content = document.createElement("div");
             let name = document.createElement("h1");
@@ -37,13 +36,13 @@ params:
             author.insertAdjacentText("beforeend", json[i].authors[0].name);
             version.insertAdjacentText("beforeend", json[i].version);
             description.insertAdjacentText("beforeend", json[i].description);
-            repo.insertAdjacentText("beforeend", "Github URL")
+            repo.insertAdjacentText("beforeend", "Github URL");
             repo.setAttribute("href", json[i].repoUrl);
             
             divrepo.insertAdjacentElement("beforeend", repo);
             divrepo.setAttribute("class", "md-card__actions");
-            author.setAttribute("class", "post-meta");
-            version.setAttribute("class", "post-meta");
+            author.setAttribute("class", "md-card__supporting-text");
+            version.setAttribute("class", "md-card__supporting-text");
             
             content.insertAdjacentElement("beforeend", name);
             content.insertAdjacentElement("beforeend", author);
@@ -53,7 +52,6 @@ params:
             content.setAttribute("class", "md-card__content");
             article.insertAdjacentElement("beforeend", content);
             article.setAttribute("class", "md-card md-card-filled");
-            //plugin.insertAdjacentElement("beforeend", article);
             document.querySelector("#plugin-list").insertAdjacentElement("beforeend", article);
         }
     });

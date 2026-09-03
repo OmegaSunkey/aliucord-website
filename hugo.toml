@@ -12,12 +12,6 @@ title = 'Aliucord'
 
 [menus]
     [[menus.main]]
-        name = 'Home'
-        pageRef = '/'
-        weight = 1
-        [menus.main.params]
-            icon = 'home'
-    [[menus.main]]
         name = 'Plugins'
         pageRef = '/plugins'
         weight = 2
