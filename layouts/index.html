@@ -54,7 +54,7 @@
                     <p>Everything is available on GitHub.<p>
                 </div>
                 <div class="md-card__actions">
-                    <a class="md-btn md-btn-filled" style="color: var(--md-sys-color-on-primary); text-decoration: none;" href="https://github.com/Aliucord"><img src="/images/github.svg" width=24 style="margin-right: 8px;">Aliucord</a>
+                    <a class="md-btn md-btn-filled" style="color: var(--md-sys-color-on-primary); text-decoration: none;" href="https://github.com/Aliucord"><img src="/images/github.svg" width=24 style="margin-right: 8px;" alt="GitHub icon.">Aliucord</a>
                 </div>
             </article>
         </div>
@@ -95,5 +95,20 @@
             </div>
         </div>
     </section>
+    {{- with resources.Get "js/carousel.js" }}
+        {{- $opts := dict
+            "minify" (cond hugo.IsDevelopment false true)
+            "sourceMap" (cond hugo.IsDevelopment "linked" "none")
+        }}
+        {{- with . | js.Build $opts }}
+            {{- if hugo.IsDevelopment }}
+            <script src="{{ .RelPermalink }}"></script>
+            {{- else }}
+                {{- with . | fingerprint }}
+                    <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
+                {{- end }}
+            {{- end }}
+        {{- end }}
+    {{- end }}
 
 {{ end }}

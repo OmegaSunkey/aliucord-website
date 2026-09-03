@@ -4,6 +4,7 @@ draft = false
 title = 'Contributors'
 body_class = 'contrib'
 custom_css = 'css/contrib.css'
+custom_js = 'js/tooltip.js'
 [params]
     description = 'All the people who contributed to this project are listed here.'
 +++
