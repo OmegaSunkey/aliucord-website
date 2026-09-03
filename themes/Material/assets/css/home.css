@@ -66,7 +66,7 @@ svg {
 }
 
 /* =========================================
- *  MATERIAL DESIGN 3: IMAGE CAROUSEL
+ *  MATERIAL DESIGN 3: IMAGE CAROUSEL (Adaptive)
  *  ========================================= */
 
 .md-carousel {
@@ -75,44 +75,55 @@ svg {
     max-width: 800px;
     margin: 0 auto;
     background-color: var(--md-sys-color-surface-container);
-    border-radius: var(--md-sys-shape-corner-large); /* 16px */
+    border-radius: var(--md-sys-shape-corner-large);
     overflow: hidden;
     box-shadow: var(--md-sys-elevation-1);
 }
 
-/* Viewport (clips the sliding track) */
+/* Viewport - height will be set dynamically by JavaScript */
 .md-carousel__viewport {
     overflow: hidden;
     width: 100%;
-    aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+    /* Height set by JS */
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Track (holds all slides, slides horizontally) */
+/* Track - holds all slides side by side */
 .md-carousel__track {
     display: flex;
-    height: 100%;
+    /* Height set by JS */
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Individual slide */
+/* Individual slide - takes full viewport width */
 .md-carousel__slide {
     flex: 0 0 100%;
     width: 100%;
-    height: 100%;
+    /* Height set by JS */
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: var(--md-sys-color-surface-container-high);
+    padding: 16px;
+    box-sizing: border-box;
 }
 
-.md-carousel__slide picture, .md-carousel__slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    user-select: none;
+/* Images display at natural size, constrained only by viewport */
+.md-carousel__slide img {
+    max-width: 100%;
+    max-height: 80vh; /* Only constraint to prevent too-tall images */
+    width: auto;
+    height: auto;
+    display: block;
 }
 
-/* Navigation buttons (icon buttons) */
+.md-carousel__slide picture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Navigation buttons */
 .md-carousel__nav {
     position: absolute;
     top: 50%;
@@ -133,12 +144,7 @@ svg {
 }
 
 .md-carousel__nav:hover {
-    background-color: var(--md-sys-color-surface-container-highest);
     box-shadow: var(--md-sys-elevation-3);
-}
-
-.md-carousel__nav:active {
-    box-shadow: var(--md-sys-elevation-1);
 }
 
 .md-carousel__nav--prev {
@@ -176,10 +182,6 @@ svg {
     padding: 0;
 }
 
-.md-carousel__indicator:hover {
-    opacity: 0.5;
-}
-
 .md-carousel__indicator.active {
     opacity: 1;
     background-color: var(--md-sys-color-primary);
@@ -208,33 +210,34 @@ svg {
     visibility: visible;
 }
 
-/* Backdrop (scrim) */
 .md-lightbox__backdrop {
     position: absolute;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.6);
-    /* backdrop-filter: blur(4px); */
+    backdrop-filter: blur(4px);
 }
 
-/* Content container */
+/* Lightbox content - constrains the carousel */
 .md-lightbox__content {
     position: relative;
     width: 90%;
     max-width: 1200px;
     max-height: 90vh;
     background-color: var(--md-sys-color-surface-container-highest);
-    border-radius: var(--md-sys-shape-corner-extra-large); /* 28px */
+    border-radius: var(--md-sys-shape-corner-extra-large);
     box-shadow: var(--md-sys-elevation-3);
     overflow: hidden;
     transform: scale(0.9);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .md-lightbox.active .md-lightbox__content {
     transform: scale(1);
 }
 
-/* Close button */
 .md-lightbox__close {
     position: absolute;
     top: 16px;
@@ -250,31 +253,38 @@ svg {
     align-items: center;
     justify-content: center;
     z-index: 10;
-    transition: background-color 0.2s;
 }
 
 .md-lightbox__close:hover {
     background-color: var(--md-sys-color-surface-variant);
 }
 
-/* Lightbox carousel adjustments */
+/* Lightbox carousel - images at natural size, constrained by lightbox */
 .md-lightbox .md-carousel {
     max-width: 100%;
+    max-height: 100%;
     border-radius: 0;
     box-shadow: none;
+    background-color: transparent;
 }
 
 .md-lightbox .md-carousel__viewport {
-    aspect-ratio: 16 / 9;
+    max-height: calc(90vh - 48px); /* Account for padding */
 }
 
-/* =========================================
- *  RESPONSIVE ADJUSTMENTS
- *  ========================================= */
+.md-lightbox .md-carousel__slide {
+    padding: 24px;
+}
 
+.md-lightbox .md-carousel__slide img {
+    max-height: calc(90vh - 96px); /* More padding for lightbox */
+}
+
+/* Mobile adjustments */
 @media (max-width: 600px) {
-    .md-carousel, .md-carousel__viewport {
-        height: 100%;
+    .md-lightbox__content {
+        width: 95%;
+        max-height: 95vh;
     }
 
     .md-carousel__nav {
@@ -290,8 +300,11 @@ svg {
         right: 8px;
     }
 
-    .md-lightbox__content {
-        width: 95%;
-        height: 700px;
+    .md-lightbox .md-carousel__slide {
+        padding: 8px;
+    }
+
+    .md-lightbox .md-carousel__slide img {
+        max-height: calc(95vh - 48px);
     }
 }

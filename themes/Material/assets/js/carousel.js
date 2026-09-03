@@ -1,7 +1,8 @@
-// MD3 Image Carousel
+// MD3 Image Carousel (Adaptive)
 class Carousel {
     constructor(element) {
         this.element = element;
+        this.viewport = element.querySelector('.md-carousel__viewport');
         this.track = element.querySelector('.md-carousel__track');
         this.slides = Array.from(this.track.querySelectorAll('.md-carousel__slide'));
         this.currentIndex = 0;
@@ -22,6 +23,26 @@ class Carousel {
 
         // Initial position
         this.updatePosition();
+
+        // Handle image loading
+        this.handleImageLoading();
+
+        // Check if inside lightbox and setup resize observer
+        const lightbox = this.element.closest('.md-lightbox');
+        if (lightbox) {
+            // When lightbox opens, recalculate
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.attributeName === 'class') {
+                        if (lightbox.classList.contains('active')) {
+                            setTimeout(() => this.updatePosition(), 350);
+                        }
+                    }
+                });
+            });
+
+            observer.observe(lightbox, { attributes: true });
+        }
     }
 
     createNavigation() {
@@ -79,6 +100,28 @@ class Carousel {
                 touchEndX = e.changedTouches[0].clientX;
                 this.handleSwipe(touchStartX, touchEndX);
             }, { passive: true });
+
+            // Recalculate on window resize
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => this.updatePosition(), 150);
+            });
+    }
+
+    handleImageLoading() {
+        // When images load, they might change the height
+        const images = this.element.querySelectorAll('img');
+        images.forEach(img => {
+            if (img.complete) {
+                // Image already loaded
+                this.updatePosition();
+            } else {
+                img.addEventListener('load', () => {
+                    this.updatePosition();
+                });
+            }
+        });
     }
 
     handleSwipe(startX, endX) {
@@ -110,13 +153,58 @@ class Carousel {
     }
 
     updatePosition() {
-        // Slide the track
-        const offset = -this.currentIndex * 100;
-        this.track.style.transform = `translateX(${offset}%)`;
+        // Adjust height first
+        this.adjustHeight();
+
+        // Get the actual width of the viewport
+        const viewportWidth = this.viewport.offsetWidth;
+
+        // Calculate the offset in pixels
+        const offset = -this.currentIndex * viewportWidth;
+
+        // Apply the transform using pixels
+        this.track.style.transform = `translateX(${offset}px)`;
 
         // Update indicators
         this.indicators.forEach((indicator, index) => {
             indicator.classList.toggle('active', index === this.currentIndex);
+        });
+    }
+
+    adjustHeight() {
+        const currentSlide = this.slides[this.currentIndex];
+        if (currentSlide) {
+            // Get the image element (handle both img and picture)
+            const img = currentSlide.querySelector('img');
+
+            if (img) {
+                // Wait for image to load if not already loaded
+                if (img.complete && img.naturalWidth > 0) {
+                    this.setViewportHeight(img);
+                } else {
+                    img.addEventListener('load', () => {
+                        this.setViewportHeight(img);
+                    }, { once: true });
+                }
+            }
+        }
+    }
+
+    setViewportHeight(img) {
+        // Get the image's displayed dimensions (after CSS constraints)
+        const imgWidth = img.offsetWidth;
+        const imgHeight = img.offsetHeight;
+
+        // Set the viewport height to match the image
+        // The viewport width is already constrained by max-width in CSS
+        this.viewport.style.height = `${imgHeight}px`;
+
+        // Update the track height to match
+        this.track.style.height = `${imgHeight}px`;
+
+        // Update all slides to match this height
+        this.slides.forEach(slide => {
+            slide.style.height = `${imgHeight}px`;
         });
     }
 }
@@ -176,6 +264,14 @@ class Lightbox {
             // Focus the close button for accessibility
             const closeButton = lightbox.querySelector('.md-lightbox__close');
             if (closeButton) closeButton.focus();
+
+            // Recalculate carousel position after lightbox opens
+            setTimeout(() => {
+                const carousel = this.carousels.get(id);
+                if (carousel) {
+                    carousel.updatePosition();
+                }
+            }, 350); // Wait for animation to complete
         }
     }
 
