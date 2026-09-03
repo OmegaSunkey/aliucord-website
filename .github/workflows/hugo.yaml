@@ -71,3 +71,16 @@ jobs:
         with:
           include-hidden-files: false
           path: ./public
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        if: vars.CLOUDFLARE_PROJECT_NAME != ''
+        with:
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: >-
+            pages deploy ./dist
+            --commit-dirty=true
+            --project-name="${{ vars.CLOUDFLARE_PROJECT_NAME }}"
+            --branch="${{ github.head_ref || github.ref_name }}"
