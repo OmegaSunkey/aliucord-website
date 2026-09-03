@@ -40,6 +40,10 @@
     align-items: center;
 }
 
+svg {
+    margin-right: 8px;
+}
+
 @media (max-width: 600px) {
     .features-side-page {
         width: initial;
