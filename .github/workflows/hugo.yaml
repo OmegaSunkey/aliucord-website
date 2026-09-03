@@ -66,12 +66,6 @@ jobs:
           path: ${{ runner.temp }}/.cache/hugo
           key: ${{ steps.cache-restore.outputs.cache-primary-key }}
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v5
-        with:
-          include-hidden-files: false
-          path: ./public
-
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         if: vars.CLOUDFLARE_PROJECT_NAME != ''
