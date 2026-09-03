@@ -149,7 +149,7 @@ body.contrib main {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10;
+    z-index: 2;
 }
 
 .cloud-child {
@@ -254,12 +254,28 @@ body.contrib main {
 @media (max-width: 600px) {
     body.contrib main {
         padding: 0;
+        height: 300px;
+        overflow-y: hidden;
     }
     body.contrib h1 {
         padding: 16px;
+        position: relative;
+        z-index: 3;
+    }
+    body.contrib .square {
+        padding: 48px 16px;
+        position: relative;
+        top: 220px;
+        z-index: 3;
+        background-color: var(--md-sys-color-surface);
+    }
+    body.contrib .md-card__content {
+        position: relative;
+        bottom: 320px;
+        z-index: 0;
     }
     .contrib-cloud {
-        width: 350px;
+        max-width: 320px;
         height: 450px;
     }
 

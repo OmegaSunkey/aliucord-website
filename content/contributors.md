@@ -9,6 +9,7 @@ custom_js = 'js/tooltip.js'
     description = 'All the people who contributed to this project are listed here.'
 +++
 
+<div class="square"></div>
 <div class="contrib-cloud">
     <div class="cloud-rotator">
         <img src="/images/aliucord.svg">
