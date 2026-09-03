@@ -2,7 +2,7 @@
 date = '2026-08-30T16:17:52-05:00'
 draft = false
 title = 'Old UI'
-weight = 8
+weight = 9
 +++
 
 **Why does Aliucord use an old Discord version?**

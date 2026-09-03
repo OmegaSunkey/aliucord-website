@@ -20,6 +20,7 @@ params:
 </div>
 
 <script>
+    document.querySelector("main > article").className = "";
     fetch("https://rautobot.github.io/themes-repo/data.json").then(r => r.json()).then(json => {
         console.log(json.length);
         for(i=0;i<json.length;i++) {

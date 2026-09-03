@@ -19,6 +19,7 @@ custom_css = 'css/contrib.css'
 </div>
 
 <script>
+    document.querySelector("main > article").className = "";
     function apply(element, index, order, total, group) {
         let cloud_child = document.createElement("div");
         let contrib = document.createElement("img");

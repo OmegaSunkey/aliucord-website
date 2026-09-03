@@ -2,7 +2,7 @@
 date = '2026-08-30T16:17:39-05:00'
 draft = false
 title = 'New UI'
-weight = 7
+weight = 8
 +++
 
 **How to get modern Discord interface (UI) in Aliucord**

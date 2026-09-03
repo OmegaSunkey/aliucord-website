@@ -1,4 +1,3 @@
-baseURL = 'http://localhost:8080'
 locale = 'en-us'
 theme = 'Material'
 title = 'Aliucord'

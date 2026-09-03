@@ -2,13 +2,17 @@
 date = '2026-08-30T16:15:33-05:00'
 draft = false
 title = 'Backports'
-weight = 5
+weight = 6
 +++
 
-**Legend**
-- 💣: Broken or partially broken
-- 🚧: Still in development or beta
-- ⚠️: Maintenance mode (unusable/broken or can compromise your account)
+<details class="md-details">
+    <summary>Legend</summary>
+    <ul>
+        <li>💣: Broken or partially broken</li>
+        <li>🚧: Still in development or beta</li>
+        <li>⚠️: Maintenance mode (unusable/broken or can compromise your account)</li>
+    </ul>
+</details>
 
 **Note:** To install the plugins from here you need to click the plugin name, it will download the plugin `.zip`, now just move it to the `Aliucord/plugins` folder using a file manager & restart Aliucord in case it was open.
 

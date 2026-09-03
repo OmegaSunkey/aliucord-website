@@ -2,33 +2,6 @@
  * PLUGINS PAGE SPECIFIC STYLE
  * ===================================== */
 
-/* body.plugins ul.post-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-body.plugins ul.post-list > li {
-    width: 400px;
-    margin: auto;
-    overflow-wrap: break-word;
-}
-
-body.plugins #plugin-list {
-    margin: auto;
-    width: 100%;
-    overflow: clip;
-}
-
-body.plugins article {
-    margin: initial;
-    height: 260px;
-}
-
-body.plugins main {
-    max-width: initial;
-}
-*/
-
 body.plugins main {
     max-width: initial;
     width: 80%

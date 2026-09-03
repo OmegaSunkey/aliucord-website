@@ -20,6 +20,7 @@ params:
 </div>
 
 <script>
+    document.querySelector("main > article").className = "";
     fetch("https://plugins.aliucord.com/manifest.json").then(r => r.json()).then(json => {
         for(i=0;i<json.length;i++) {
             //let plugin = document.createElement("li");
